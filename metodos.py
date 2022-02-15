@@ -2,17 +2,28 @@ import numpy as np
 
 # funções auxiliares
 
-
+'''
+O método a seguir é responsável por gerar uma matriz
+de dimensões x por y com elementos aleatórios entre
+0 e 1.
+'''
 def generateRandomArray(x, y):
     array = np.random.rand(x, y)
     return array
 
-
+'''
+A função a seguir retorna o indíce do maior autovalor de uma
+lista que contém os autovalores de uma matriz.
+'''
 def findTheIndexOfHighestEigValue(array):
     array_list = array.tolist()
     max_value = max(array_list)
     return array_list.index(max_value)
 
+'''
+A função a seguir retorna o indíce do segundo maior autovalor de uma
+lista que contém os autovalores de uma matriz.
+'''
 def findTheIndexOfSecondHighestEigValue(array):
     index_highest = findTheIndexOfHighestEigValue(array)
     array_list = array.tolist()
@@ -21,6 +32,10 @@ def findTheIndexOfSecondHighestEigValue(array):
     secondHighest = max(array_list_copy)
     return array_list.index(secondHighest)
 
+'''
+A rotina a seguir aplica o critério de Sassenfeld para uma matriz
+A de ordem n. Ela retorna o parâmetro M do critério.
+'''
 def sassenfeldCriterion(A, n):
     sumFirstLine = 0
     for j in range(1,n):
@@ -39,12 +54,20 @@ def sassenfeldCriterion(A, n):
         betaArray.append(beta_i)
     return max(betaArray)
 
+'''
+O método a seguir imprime se o critério de Sassenfeld é satisfeito
+ou não com base no valor do parâmetro M.
+'''
 def isSassenFeldCriterionSatisfied (M):
     if (M < 1):
         print("Criterio de Sassenfeld satisfeito: M < 1")
     else:
         print("Criterio de Sassenfeld nao satisfeito: M > 1")
 
+'''
+A função a seguir recebe dois vetores quaisquer u e v e retorna o módulo
+da maior diferença entre os elementos correspondentes do vetores u e v.
+'''
 def greatestDifferenceBetweenArrays(u, v):
     n = len(u)
     difference = list(range(n))
@@ -52,6 +75,10 @@ def greatestDifferenceBetweenArrays(u, v):
         difference[i] = np.abs(u[i] - v[i])
     return max(difference)
 
+'''
+A rotina a seguir é utilizada nos exs 1 e 2 para a impressão das condições
+iniciais.
+'''
 def printInitialConditions(B, x0, n, labelB):
     print("- Condicoes iniciais")
     print(labelB+" ("+str(n)+"x"+str(n)+") = ")
@@ -61,7 +88,12 @@ def printInitialConditions(B, x0, n, labelB):
     print(x0)
     print("\n")
 
-
+'''
+O método a seguir serve para extrair da resposta retornada pelo
+método 'np.linalg.eig' os seguintes elementos: o maior autovalor
+de uma matriz, o respectivo autovetor associado e o segundo maior
+autovalor.
+'''
 def getEigValuesAndVectors(reference, n):
     eigvalueArray = reference[0]
     indexHighestEigValue = findTheIndexOfHighestEigValue(eigvalueArray)
@@ -72,11 +104,19 @@ def getEigValuesAndVectors(reference, n):
     eigVector = reference[1][:, indexHighestEigValue].reshape(n, 1)
     return (highestEigValue, secondHighestEigValue, eigVector)
 
-
+'''
+A função a seguir retorna o módulo da diferença entre
+o autovalor calculado ('eigValue') e o valor de referência
+('eigValueRef').
+'''
 def getEigValueError(eigValue, eigValueRef):
     return np.abs(eigValue - eigValueRef)
 
-
+'''
+A função a seguir retorna a norma do vetor diferença 
+entre o autovetor calculado ('eigVector') e o de
+refêrencia ('eigVectorRef').
+'''
 def getEigVectorError(eigVector, eigVectorRef):
     if (eigVector[0][0]*eigVectorRef[0][0] < 0):
         return np.linalg.norm(eigVector + eigVectorRef)
