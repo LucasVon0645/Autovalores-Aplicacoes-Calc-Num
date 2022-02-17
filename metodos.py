@@ -5,6 +5,26 @@ import numpy as np
 '''
 O método a seguir é responsável por gerar uma matriz
 de dimensões x por y com elementos aleatórios entre
+0 e 1 por meio da semente 'seed'.
+'''
+def generateRandomB(x,y, seed):
+    np.random.seed(seed)
+    array = np.random.rand(x,y)
+    return array
+
+'''
+O método a seguir é responsável por gerar um vetor
+de dimensão x por 1 com elementos aleatórios entre
+0 e 1 por meio da semente 'seed'.
+'''
+def generateRandomX0(x, seed):
+    np.random.seed(seed)
+    array = np.random.rand(x,1)
+    return array
+
+'''
+O método a seguir é responsável por gerar uma matriz
+de dimensões x por y com elementos aleatórios entre
 0 e 1.
 '''
 def generateRandomArray(x, y):

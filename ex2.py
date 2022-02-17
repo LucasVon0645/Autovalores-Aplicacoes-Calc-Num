@@ -228,8 +228,8 @@ def createGraphic(A, x0, n, eigValuesAndVectorsInverseA, title, fileName):
 
 
 # Geração das condições iniciais do ex 2.1
-B = met.generateRandomArray(10, 10)
-x0 = met.generateRandomArray(10, 1)
+B = met.generateRandomB(10,10,2021)
+x0 = met.generateRandomX0(10, 2022)
 
 
 print("******************************************************")
@@ -268,8 +268,8 @@ createGraphic(A, x0, 10, eigValuesAndVectorsInverseA, "Exercício 2.1", "ex2_1")
 
 
 # Geração das condições iniciais do ex 2.2
-B0 = met.generateRandomArray(5, 5)
-x0 = met.generateRandomArray(5, 1)
+B0 = met.generateRandomB(5,5, 2021)
+x0 = met.generateRandomX0(5,2022)
 p = 10
 
 
