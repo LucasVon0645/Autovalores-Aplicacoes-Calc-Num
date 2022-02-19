@@ -138,6 +138,4 @@ entre o autovetor calculado ('eigVector') e o de
 refêrencia ('eigVectorRef').
 '''
 def getEigVectorError(eigVector, eigVectorRef):
-    if (eigVector[0][0]*eigVectorRef[0][0] < 0):
-        return np.linalg.norm(eigVector + eigVectorRef)
     return np.linalg.norm(eigVector - eigVectorRef)

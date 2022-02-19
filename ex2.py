@@ -80,6 +80,8 @@ def inversePowerMethod(A, x0, n):
             interactions = i + 1
             break
         x_previous = x_next
+    if (x_next[0][0] < 0 or (x_next[0][0] == 0 and x_next[1][0] < 0)):
+        x_next *= -1
     return (x_next, u[0][0], interactions)
 
 '''
@@ -115,6 +117,8 @@ def inversePowerMethodInteractions(A, x0, inverse_lambdan, inverse_lambdan_1, n)
         c = solveEquationSystem(A, n, random, x_previous, w)
         x_next = c/np.linalg.norm(c)
         u = np.dot(x_previous.T, c)/np.dot(x_previous.T, x_previous)
+        if (x_next[0][0] < 0 or (x_next[0][0] == 0 and x_next[1][0] < 0)):
+            x_next *= -1
         resultEigenVector.append(x_next)
         resultEigenValue.append(u[0][0])
         if (np.linalg.norm(x_next - x_previous) < epsilon):
@@ -198,6 +202,8 @@ def createGraphic(A, x0, n, eigValuesAndVectorsInverseA, title, fileName):
     inverse_lambdanRef = eigValuesAndVectorsInverseA[0]
     inverse_lambdan_1Ref = eigValuesAndVectorsInverseA[1]
     eigVectorRef = eigValuesAndVectorsInverseA[2]
+    if (eigVectorRef[0][0] < 0 or (eigVectorRef[0][0] == 0 and eigVectorRef[1][0] < 0)):
+            eigVectorRef *= -1
     results = inversePowerMethodInteractions(
         A, x0, inverse_lambdanRef, inverse_lambdan_1Ref, n)
     eigVectorArray = results[0]
@@ -258,6 +264,9 @@ eigValuesAndVectorsInverseA = met.getEigValuesAndVectors(reference, 10)
 highestEigValueOfInverseA = eigValuesAndVectorsInverseA[0]
 secondHighestEigValueOfInverseA = eigValuesAndVectorsInverseA[1]
 eigVector = eigValuesAndVectorsInverseA[2]
+# Escolha do sinal positivo para a primeira entrada do autovetor de referência
+if (eigVector[0][0] < 0 or (eigVector[0][0] == 0 and eigVector[1][0] < 0)):
+            eigVector *= -1
 printReference(highestEigValueOfInverseA,
                secondHighestEigValueOfInverseA, eigVector)
 # Comparação e gráficos
@@ -314,6 +323,9 @@ eigValuesAndVectorsInverseA = met.getEigValuesAndVectors(reference, 5)
 highestEigValueOfInverseA = eigValuesAndVectorsInverseA[0]
 secondHighestEigValueInverseA = eigValuesAndVectorsInverseA[1]
 eigVector = eigValuesAndVectorsInverseA[2]
+# Escolha do sinal positivo para a primeira entrada do autovetor de referência
+if (eigVector[0][0] < 0 or (eigVector[0][0] == 0 and eigVector[1][0] < 0)):
+            eigVector *= -1
 printReference(highestEigValueOfInverseA,
                secondHighestEigValueInverseA, eigVector)
 # Comparação e gráficos
@@ -355,6 +367,9 @@ eigValuesAndVectorsInverseA = met.getEigValuesAndVectors(reference, 5)
 highestEigValueOfInverseA = eigValuesAndVectorsInverseA[0]
 secondHighestEigValueInverseA = eigValuesAndVectorsInverseA[1]
 eigVector = eigValuesAndVectorsInverseA[2]
+# Escolha do sinal positivo para a primeira entrada do autovetor de referência
+if (eigVector[0][0] < 0 or (eigVector[0][0] == 0 and eigVector[1][0] < 0)):
+            eigVector *= -1
 printReference(highestEigValueOfInverseA,
                secondHighestEigValueInverseA, eigVector)
 # Comparação e gráficos

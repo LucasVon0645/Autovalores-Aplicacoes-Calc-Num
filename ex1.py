@@ -25,16 +25,18 @@ def powerMethod(A, x0):
             interactions = i + 1
             break
         x_previous = x_next
+    if (x_next[0][0] < 0 or (x_next[0][0] == 0 and x_next[1][0] < 0)):
+            x_next *= -1
     return (x_next, u[0][0], interactions)
 
 '''
 Essa rotina é semelhante à anterior ('powerMethod'). No entanto,
-ao invés de somente retornar as respostas finais, ela retorna listas
-que possuem a sequência de resultados encontrados nas interações para os
-valores do autovetor e autovalor. O método também retorna os valores 
-encontrados nas interações correspondentes a potência da razão entre os
-autovalores de referência. A função é utilizada para a construção dos
-gráficos. 'lambda1' e 'lambda2' são os valores de referência para o maior
+ao invés de somente retornar as respostas finais, ela retorna a lista
+dos resultados das interações para o autovetor e o autovalor. O método
+também retorna os valores  encontrados nas interações correspondentes à
+potência da razão entre os autovalores de referência. A função é utilizada 
+para a construção dos gráficos. 
+'lambda1' e 'lambda2' são os valores de referência para o maior
 e segundo maior autovalor, respectivamente. 
 '''
 def powerMethodInteractions(A, x0, lambda1, lambda2):
@@ -57,6 +59,8 @@ def powerMethodInteractions(A, x0, lambda1, lambda2):
         n = np.dot(A, x_previous)
         x_next = n/np.linalg.norm(n)
         u = np.dot(x_previous.T, n)/np.dot(x_previous.T, x_previous)
+        if (x_next[0][0] < 0 or (x_next[0][0] == 0 and x_next[1][0] < 0)):
+            x_next *= -1
         resultEigenVector.append(x_next)
         resultEigenValue.append(u[0][0])
         if (np.linalg.norm(x_next - x_previous) < epsilon):
@@ -132,6 +136,8 @@ def createGraphic(A, x0, eigValuesAndVectors, title, fileName):
     eigValueRef = eigValuesAndVectors[0]
     lambda2Ref = eigValuesAndVectors[1]
     eigVectorRef = eigValuesAndVectors[2]
+    if (eigVectorRef[0][0] < 0 or (eigVectorRef[0][0] == 0 and eigVectorRef[1][0] < 0)):
+            eigVectorRef *= -1
     results = powerMethodInteractions(A, x0, eigValueRef, lambda2Ref)
     eigVectorArray = results[0]
     eigValueArray = results[1]
@@ -183,6 +189,9 @@ eigValuesAndVectors = met.getEigValuesAndVectors(reference, 10)
 highestEigValue = eigValuesAndVectors[0]
 secondHighestEigValue = eigValuesAndVectors[1]
 eigVector = eigValuesAndVectors[2]
+# Escolha do sinal positivo para a primeira entrada do autovetor de referência
+if (eigVector[0][0] < 0 or (eigVector[0][0] == 0 and eigVector[1][0] < 0)):
+            eigVector *= -1
 printReference(highestEigValue, secondHighestEigValue, eigVector)
 # Comparação e gráficos
 printComparison(results[1], highestEigValue, results[0], eigVector)
@@ -225,6 +234,9 @@ eigValuesAndVectors = met.getEigValuesAndVectors(reference, 5)
 highestEigValue = eigValuesAndVectors[0]
 secondHighestEigValue = eigValuesAndVectors[1]
 eigVector = eigValuesAndVectors[2]
+# Escolha do sinal positivo para a primeira entrada do autovetor de referência
+if (eigVector[0][0] < 0 or (eigVector[0][0] == 0 and eigVector[1][0] < 0)):
+            eigVector *= -1
 printReference(highestEigValue, secondHighestEigValue, eigVector)
 # Comparação e gráficos
 printComparison(results[1], highestEigValue, results[0], eigVector)
@@ -256,6 +268,9 @@ eigValuesAndVectors = met.getEigValuesAndVectors(reference, 5)
 highestEigValue = eigValuesAndVectors[0]
 secondHighestEigValue = eigValuesAndVectors[1]
 eigVector = eigValuesAndVectors[2]
+# Escolha do sinal positivo para a primeira entrada do autovetor de referência
+if (eigVector[0][0] < 0 or (eigVector[0][0] == 0 and eigVector[1][0] < 0)):
+            eigVector *= -1
 printReference(highestEigValue, secondHighestEigValue, eigVector)
 # Comparação e gráficos
 printComparison(results[1], highestEigValue, results[0], eigVector)
