@@ -7,29 +7,6 @@ itmax = 70
 epsilon = 10**(-15)
 
 '''
-Esse método implementa o método da potências para a determinação
-do maior autovalor de uma matriz A  e de seu respectivo 
-autovetor associado. A função retorna uma tupla composta, nessa ordem, 
-pelos seguintes elementos: autovetor, autovalor, quantidade de interações 
-realizadas. O cálculo é feito a partir de um vetor inicial dado x0.
-'''
-def powerMethod(A, x0):
-    x_previous = x0
-    u = [[]]
-    interactions = itmax
-    for i in range(itmax):
-        n = np.dot(A, x_previous)
-        x_next = n/np.linalg.norm(n)
-        u = np.dot(x_previous.T, n)/np.dot(x_previous.T, x_previous)
-        if (np.linalg.norm(x_next - x_previous) < epsilon):
-            interactions = i + 1
-            break
-        x_previous = x_next
-    if (x_next[0][0] < 0 or (x_next[0][0] == 0 and x_next[1][0] < 0)):
-            x_next *= -1
-    return (x_next, u[0][0], interactions)
-
-'''
 Essa rotina é semelhante à anterior ('powerMethod'). No entanto,
 ao invés de somente retornar as respostas finais, ela retorna a lista
 dos resultados das interações para o autovetor e o autovalor. O método
@@ -68,20 +45,6 @@ def powerMethodInteractions(A, x0, lambda1, lambda2):
             break
         x_previous = x_next
     return (resultEigenVector, resultEigenValue, assintoticErrorArray, squaredAssintoticErrorArray, interactions)
-
-'''
-Essa função cria a matriz A do exercício 1.1 a partir de uma
-certa matriz B.
-'''
-def createA1array(B):
-    return B + B.T
-
-'''
-Essa função cria a matriz A do exercício 1.2 a partir de uma
-certa matriz B e de uma matriz diagonal D.
-'''
-def createA2array(B, D):
-    return np.dot(B, np.dot(D, np.linalg.inv(B)))
 
 '''
 Esse método imprime os resultados obtidos a partir do método da potências
@@ -163,25 +126,24 @@ def createGraphic(A, x0, eigValuesAndVectors, title, fileName):
     plt.savefig("images/ex1/"+fileName+".png")
     plt. clf()
 
+# Programa principal
 
-
+print("******************************************************")
+print("Exercício 1.1")
+print("\n")
 
 # Geração das condições iniciais do ex 1.1
 B = met.generateRandomB(10,10,2021)
 x0 = met.generateRandomX0(10, 2022)
 
-
-print("******************************************************")
-print("Exercicio 1.1")
-print("\n")
 met.printInitialConditions(B, x0, 10, "B")
 # Criação da matriz A do ex 1.1
-A = createA1array(B)
+A = met.createA1array(B)
 print("A (10x10) = ")
 print(A)
 print("\n")
 # Resultado pela resolução utilizando o método das potências
-results = powerMethod(A, x0)
+results = met.powerMethod(A, x0)
 printResults(results)
 # Referências
 reference = np.linalg.eig(A)
@@ -197,18 +159,15 @@ printReference(highestEigValue, secondHighestEigValue, eigVector)
 printComparison(results[1], highestEigValue, results[0], eigVector)
 createGraphic(A, x0, eigValuesAndVectors, "Exercício 1.1", "ex1_1")
 
-
-
+print("******************************************************")
+print("Exercício 1.2")
+print("\n")
 
 # Geração das condições iniciais do ex 1.2
 B = met.generateRandomB(5,5, 2021)
 x0 =  met.generateRandomX0(5,2022)
 
-print("******************************************************")
-print("Exercicio 1.2")
-print("\n")
 met.printInitialConditions(B, x0, 5, "B")
-
 
 # Exercício 1.2.a
 print("-> Primeiro teste: lambda1 relativamente perto de lambda2")
@@ -218,7 +177,7 @@ D = np.array([[1.1, 0, 0,   0,      0],
               [0,   0, 0,   0.2,    0], 
               [0,   0, 0,   0,   0.05]])
 # Criação da matriz A do ex 1.2.a
-A = createA2array(B, D)
+A = met.createA2array(B, D)
 print("D (5x5) = ")
 print(D)
 print("\n")
@@ -226,7 +185,7 @@ print("A (5x5) = ")
 print(A)
 print("\n")
 # Resultado pela resolução utilizando o método das potências
-results = powerMethod(A, x0)
+results = met.powerMethod(A, x0)
 printResults(results)
 # Referências
 reference = np.linalg.eig(A)
@@ -252,7 +211,7 @@ D = np.array([[5, 0, 0,   0,      0],
               [0, 0, 0,   0.2,    0], 
               [0, 0, 0,   0,   0.05]])
 # Criação da matriz A do ex 1.2.b
-A = createA2array(B, D)
+A = met.createA2array(B, D)
 print("D (5x5) = ")
 print(D)
 print("\n")
@@ -260,7 +219,7 @@ print("A (5x5) = ")
 print(A)
 print("\n")
 # Resultado pela resolução utilizando o método das potências
-results = powerMethod(A, x0)
+results = met.powerMethod(A, x0)
 printResults(results)
 # Referências
 reference = np.linalg.eig(A)

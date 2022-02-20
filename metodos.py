@@ -1,6 +1,10 @@
 import numpy as np
 
-# funções auxiliares
+# Constantes para a função powerMethod
+itmax = 70
+epsilon = 10**(-15)
+
+# Funções auxiliares
 
 '''
 O método a seguir é responsável por gerar uma matriz
@@ -139,6 +143,49 @@ refêrencia ('eigVectorRef').
 '''
 def getEigVectorError(eigVector, eigVectorRef):
     return np.linalg.norm(eigVector - eigVectorRef)
+
+# A função a seguir está neste arquivo, pois é necessária para o exercício 3 e 4
+
+'''
+A função a seguir implementa o método da potências para a determinação
+do maior autovalor de uma matriz A  e de seu respectivo autovetor 
+associado. A função retorna uma tupla composta, nessa ordem, pelos 
+seguintes elementos: autovetor, autovalor, quantidade de interações 
+realizadas. O cálculo é feito a partir de um vetor inicial dado x0.
+'''
+def powerMethod(A, x0):
+    x_previous = x0
+    u = [[]]
+    interactions = itmax
+    for i in range(itmax):
+        n = np.dot(A, x_previous)
+        x_next = n/np.linalg.norm(n)
+        u = np.dot(x_previous.T, n)/np.dot(x_previous.T, x_previous)
+        if (np.linalg.norm(x_next - x_previous) < epsilon):
+            interactions = i + 1
+            break
+        x_previous = x_next
+    if (x_next[0][0] < 0 or (x_next[0][0] == 0 and x_next[1][0] < 0)):
+            x_next *= -1
+    return (x_next, u[0][0], interactions)
+
+# As duas funções a seguir estão neste arquivo, pois são necessárias para o exercício 3
+
+'''
+A função a seguir cria a matriz A do exercício 1.1 a partir de uma
+certa matriz B.
+'''
+def createA1array(B):
+    return B + B.T
+
+'''
+A função a seguir cria a matriz A do exercício 1.2 a partir de uma
+certa matriz B e de uma matriz diagonal D.
+'''
+def createA2array(B, D):
+    return np.dot(B, np.dot(D, np.linalg.inv(B)))
+
+# Funções temporárias
 
 def imprime(matrix):
     for i in range(len(matrix)):

@@ -1,12 +1,9 @@
 import numpy as np
 import metodos as met
-from ex1 import powerMethod, createA1array, createA2array
 
 # Constantes
 itmax = 10000
 epsilon = 10**(-15)
-
-# Funções auxiliares
 
 '''
 A função a seguir implementa a fatoração QR, a qual transforma a matriz A 
@@ -214,7 +211,7 @@ def printAfinalAndNumberOfIterations(A_final, k):
 # Programa principal
 
 print("******************************************************")
-print("Exercicio 3.1")
+print("Exercício 3.1")
 
 # definição e apresentação da matriz A utilizada para o exercício 3.1
 A = np.array([[6.0, -2.0, -1.0], [-2.0, 6.0, -1.0], [-1.0, -1.0, 5.0]])
@@ -254,7 +251,7 @@ printEigValuesAndVectors(eigValues, eigVectors)
 printComparison(eigValuesRef, eigValues, eigVectorsRef, eigVectors)
 
 print("\n******************************************************")
-print("Exercicio 3.2")
+print("Exercício 3.2")
 
 # definição e apresentação da matriz A utilizada para o exercício 3.2
 A = np.array([[1.0, 1.0], [-3.0, 1.0]])
@@ -286,7 +283,7 @@ printEigValues(eigValues)
 printComparisonEigValues(eigValuesRef, eigValues)
 
 print("\n******************************************************")
-print("Exercicio 3.3")
+print("Exercício 3.3")
 
 # definição e apresentação da matriz A utilizada para o exercício 3.3
 A = np.array([[3.0, -3.0], [0.33333, 5.0]])
@@ -318,7 +315,7 @@ printEigValues(eigValues)
 printComparisonEigValues(eigValuesRef, eigValues)
 
 print("\n******************************************************")
-print("Exercicio 3.4")
+print("Exercício 3.4")
 
 # resolução do exercício para a matriz A1 do exercício 1.1
 print("\n---> Matriz A1 do Exercício 1.1:")
@@ -328,13 +325,13 @@ print("\n---> Matriz A1 do Exercício 1.1:")
 B = met.generateRandomB(10, 10, 2021) # usando a mesma seed do exercício 1 para comparação
 x0 = met.generateRandomX0(10, 2022)
 
-A1 = createA1array(B)
+A1 = met.createA1array(B)
 
 # determinação do autovalor dominante de A1 pelo método das potências, 
 # desenvolvido no exercício 1
 print("\n(+) Método das Potências:")
 
-results = powerMethod(A1, x0)
+results = met.powerMethod(A1, x0)
 lambda1_A1_P = results[1]
 
 print("\nAutovalor dominante de A1 obtido pelo método das potências: " + str(lambda1_A1_P))
@@ -367,13 +364,13 @@ D = np.array([[1.5, 0, 0,   0,      0],
               [0,   0, 0,   0.2,    0], 
               [0,   0, 0,   0,   0.05]])
 
-A2 = createA2array(B, D)
+A2 = met.createA2array(B, D)
 
 # determinação do autovalor dominante de A2 pelo método das potências, 
 # desenvolvido no exercício 1
 print("\n(+) Método das Potências:")
 
-results = powerMethod(A2, x0)
+results = met.powerMethod(A2, x0)
 lambda1_A2_P = results[1]
 
 print("\nAutovalor dominante de A2 obtido pelo método das potências: " + str(lambda1_A2_P))

@@ -24,7 +24,6 @@ def linesCriterion(A, n):
             break
     return valid
 
-
 '''
 Essa rotina implementa o método SOR (Sucessive Over-Relaxation) 
 para a resolução de sistemas lineares da forma A.x = y, em que 
@@ -58,7 +57,6 @@ def solveEquationSystem(A, n, x0, y, w):
             break
         x_previous = x_next.copy()
     return np.array(x_next)
-
 
 '''
 Esse método implementa o método da potência inversa para a determinação
@@ -127,14 +125,12 @@ def inversePowerMethodInteractions(A, x0, inverse_lambdan, inverse_lambdan_1, n)
         x_previous = x_next
     return (resultEigenVector, resultEigenValue, assintoticErrorArray, squaredAssintoticErrorArray, interactions)
 
-
 '''
 Essa função cria a matriz A de ordem n do exercício 2.1 a partir de uma
 certa matriz B de mesma ordem.
 '''
 def createA1array(B, n):
     return B + B.T + n*np.identity(n)
-
 
 '''
 Essa função cria a matriz A de ordem n do exercício 2.2 a partir de uma
@@ -143,7 +139,6 @@ certa matriz B0, de uma matriz diagonal D e de um parâmetro p escolhido.
 def createA2array(B0, D, n, p):
     B = B0 + p*np.identity(n)
     return np.dot(B, np.dot(D, np.linalg.inv(B)))
-
 
 '''
 Esse método imprime os resultados obtidos a partir do método da potência inversa
@@ -157,7 +152,6 @@ def printResults(result):
     print("autovetor de A^(-1) associado a lambda_n^(-1): ")
     print(result[0])
     print("\n")
-
 
 '''
 Esse método imprime os valores de referência obtidos a partir da biblioteca
@@ -174,7 +168,6 @@ def printReference(highestEigValue, secondHighestEigValue, eigVector):
           str(np.abs(secondHighestEigValue/highestEigValue)))
     print("\n")
 
-
 '''
 Essa função imprime dados que permitem a comparação dos valores encontrados
 com os valores de referência.
@@ -188,7 +181,6 @@ def printComparison(eigValue, eigValueRef, eigVector, eigVectorRef):
     print("Erro entre o autovetor de A^(-1) associado a lambda_n^(-1) calculado e o de referencia: " +
           str(eigVectorError))
     print("\n")
-
 
 '''
 Essa rotina é responsável por gerar os gráficos em escala logarítmica 
@@ -230,17 +222,16 @@ def createGraphic(A, x0, n, eigValuesAndVectorsInverseA, title, fileName):
     plt.savefig("images/ex2/"+fileName+".png")
     plt. clf()
 
+# Programa principal
 
-
+print("******************************************************")
+print("Exercício 2.1")
+print("\n")
 
 # Geração das condições iniciais do ex 2.1
 B = met.generateRandomB(10,10,2021)
 x0 = met.generateRandomX0(10, 2022)
 
-
-print("******************************************************")
-print("Exercicio 2.1")
-print("\n")
 met.printInitialConditions(B, x0, 10, "B")
 # Criação da matriz A do ex 2.1
 A = createA1array(B, 10)
@@ -274,22 +265,18 @@ printReference(highestEigValueOfInverseA,
 printComparison(results[1], highestEigValueOfInverseA, results[0], eigVector)
 createGraphic(A, x0, 10, eigValuesAndVectorsInverseA, "Exercício 2.1", "ex2_1")
 
-
-
+print("******************************************************")
+print("Exercício 2.2")
+print("\n")
 
 # Geração das condições iniciais do ex 2.2
 B0 = met.generateRandomB(5,5, 2021)
 x0 = met.generateRandomX0(5,2022)
 p = 10
 
-
-print("******************************************************")
-print("Exercicio 2.2")
-print("\n")
 met.printInitialConditions(B0, x0, 5, "B0")
 print("p = 10")
 print("\n")
-
 
 # Exercício 2.2.a
 print(
@@ -333,7 +320,6 @@ printReference(highestEigValueOfInverseA,
 printComparison(results[1], highestEigValueOfInverseA, results[0], eigVector)
 createGraphic(
     A, x0, 5, eigValuesAndVectorsInverseA, "Exercício 2.2, $\lambda_{n} = 0.1$ e $\lambda_{n-1} = 0.12$", "ex2_2a")
-
 
 # Exercício 2.2.b (mesmas condições para B e x0)
 print(

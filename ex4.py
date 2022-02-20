@@ -1,8 +1,5 @@
 import numpy as np
 import metodos as met
-from ex1 import powerMethod
-
-# Funções auxiliares
 
 '''
 A função a seguir recebe a matriz de arestas E e o número de vértices n 
@@ -42,12 +39,12 @@ def calculateAverageAndMaximumDegree(A):
 # Programa principal
 
 print("******************************************************")
-print("Exercicio 4.1")
+print("Exercício 4.1")
 
 print("\nOs dois projetos de rede de metrô representados pelos grafos G1 e G2 são apresentados no relatório.")
 
 print("\n******************************************************")
-print("Exercicio 4.2")
+print("Exercicío 4.2")
 
 # declaração e apresentação das matrizes de arestas para os grafos G1 e G2
 E1 = np.array([[0 , 2 ],
@@ -107,15 +104,15 @@ print("\nMatriz de adjacência A2 referente ao grafo G2: ")
 print(A2)
 
 print("\n******************************************************")
-print("Exercicio 4.3")
+print("Exercício 4.3")
 
 # utilização do método das potências (desenvolvido no exercício 1) para encontrar 
 # os índices dos grafos G1 e G2, além dos autovetores associados a esses índices
 x01 = met.generateRandomX0(len(A1), 42)
-eigVector1, lambda1_G1, k1 = powerMethod(A1, x01)
+eigVector1, lambda1_G1, k1 = met.powerMethod(A1, x01)
 
 x02 = met.generateRandomX0(len(A2), 42)
-eigVector2, lambda1_G2, k2 = powerMethod(A2, x02)
+eigVector2, lambda1_G2, k2 = met.powerMethod(A2, x02)
 
 # apresentação e comparação dos índices dos grafos G1 e G2
 print("\nÍndice de G1: " + str(lambda1_G1))
@@ -149,7 +146,7 @@ if (lambda1_G2 >= dmed2 and lambda1_G2 <= dmax2):
     print("- e menor do que o grau máximo dos vértices de G2")
 
 print("\n******************************************************")
-print("Exercicio 4.4")
+print("Exercício 4.4")
 
 # apresentação das aproximações numéricas dos autovetores 
 # associados aos índices (autovalores) dos grafos G1 e G2
