@@ -247,6 +247,7 @@ A = createA1array(B, 10)
 print("A (10x10) = ")
 print(A)
 print("\n")
+print("\n")
 # Aplicação do critério das linhas
 print("Criterio das linhas para A: ", linesCriterion(A, 10))
 print("\n")
@@ -293,7 +294,7 @@ print("\n")
 # Exercício 2.2.a
 print(
     "-> Primeiro teste: lambda_n^(-1) relativamente perto de lambda_[n-1]^(-1)")
-D = np.array([[1.5, 0, 0,   0,      0],
+D = np.array([[1.1, 0, 0,   0,      0],
               [0,   1, 0,   0,      0],
               [0,   0, 0.5, 0,      0],
               [0,   0, 0,   0.12,   0],
@@ -346,6 +347,8 @@ D = np.array([[5, 0, 0,   0,      0],
 A = createA2array(B0, D, 5, 15)
 print("D (5x5) = ")
 print(D)
+print("\n")
+print("p = 15")
 print("\n")
 print("A (5x5) = ")
 print(A)

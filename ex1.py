@@ -212,7 +212,7 @@ met.printInitialConditions(B, x0, 5, "B")
 
 # Exercício 1.2.a
 print("-> Primeiro teste: lambda1 relativamente perto de lambda2")
-D = np.array([[1.5, 0, 0,   0,      0],
+D = np.array([[1.1, 0, 0,   0,      0],
               [0,   1, 0,   0,      0], 
               [0,   0, 0.5, 0,      0],
               [0,   0, 0,   0.2,    0], 
@@ -241,7 +241,7 @@ printReference(highestEigValue, secondHighestEigValue, eigVector)
 # Comparação e gráficos
 printComparison(results[1], highestEigValue, results[0], eigVector)
 createGraphic(
-    A, x0, eigValuesAndVectors, "Exercício 1.2, $\lambda_{1} = 1.5$ e $\lambda_{2} = 1.0$", "ex1_2a")
+    A, x0, eigValuesAndVectors, "Exercício 1.2, $\lambda_{1} = 1.1$ e $\lambda_{2} = 1.0$", "ex1_2a")
 
 
 # Exercício 1.2.b (mesmas condições para B e x0)
