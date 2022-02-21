@@ -184,22 +184,3 @@ certa matriz B e de uma matriz diagonal D.
 '''
 def createA2array(B, D):
     return np.dot(B, np.dot(D, np.linalg.inv(B)))
-
-# Funções temporárias
-
-def imprime(matrix):
-    for i in range(len(matrix)):
-        string = ""
-        for j in range(len(matrix[i])):
-            string = string + str(round(matrix[i][j], 3)) + " & "
-        string = string + "\\"
-        string = string.replace(".", ",")
-        print(string)
-
-def imprime2(matrix):
-    string = ""
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            string = string + str(round(matrix[i][j], 8)) + " & "
-        string = string.replace(".", ",")
-    print(string)
